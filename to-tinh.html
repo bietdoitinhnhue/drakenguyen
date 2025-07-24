@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tỏ Tình: Xe chở Crush & Bầu trời bong bóng</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to top, #b7eaff 60%, #fffbe6 100%);
+      overflow: hidden;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      user-select: none;
+    }
+    .cloud {
+      position: absolute;
+      top: 20px;
+      left: 100px;
+      width: 140px;
+      height: 60px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.7;
+      filter: blur(2px);
+      z-index: 2;
+    }
+    .cloud2 { left: 320px; top: 70px; width: 90px; height: 40px;}
+    .cloud3 { left: 700px; top: 50px; width: 120px; height: 52px; opacity: 0.6;}
+    .road {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      width: 100vw;
+      height: 60px;
+      background: #484848;
+      box-shadow: 0 6px 24px #2224;
+      z-index: 10;
+    }
+    .road::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 26px;
+      width: 100%;
+      height: 8px;
+      background: repeating-linear-gradient(
+        to right, #fff 0 50px, transparent 50px 90px
+      );
+      opacity: 0.6;
+    }
+    .car {
+      position: absolute;
+      left: -220px;
+      bottom: 92px;
+      font-size: 80px;
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: drive 7s linear infinite;
+      transition: filter .2s;
+    }
+    @keyframes drive {
+      0% { left: -220px;}
+      100% { left: 110vw;}
+    }
+    .crew {
+      font-size: 1.2rem;
+      margin-bottom: -12px;
+      margin-left: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .boy {
+      animation: blush 1.5s infinite alternate;
+      font-size: 1.3em;
+    }
+    @keyframes blush {
+      from { filter: brightness(1) hue-rotate(0deg);}
+      to   { filter: brightness(1.4) hue-rotate(-18deg);}
+    }
+    .love {
+      font-size: 2rem;
+      animation: flyup 1.2s linear infinite alternate;
+      margin-left: 34px;
+      margin-top: -16px;
+      user-select: none;
+    }
+    @keyframes flyup {
+      from { transform: translateY(0);}
+      to   { transform: translateY(-24px) scale(1.14);}
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 330px;
+      transform: translate(-50%, -50%);
+      background: #fffafc;
+      border-radius: 20px;
+      box-shadow: 0 10px 60px #3334;
+      text-align: center;
+      padding: 36px 20px 28px 20px;
+      font-size: 1.2rem;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .7s;
+    }
+    .popup.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .popup h2 { color: #d72660; margin-bottom: 22px;}
+    .popup .buttons { margin-top: 22px;}
+    .btn {
+      padding: 12px 28px;
+      font-size: 1rem;
+      border-radius: 20px;
+      border: none;
+      margin: 0 12px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .yes { background: #f857a6; color: #fff;}
+    .yes:hover { background: #ff5858;}
+    .no { background: #eee; color: #d72660;}
+    .no:hover { background: #f8b195;}
+    canvas { position:fixed; left:0;top:0;pointer-events:none;z-index:120; }
+    .flytext {
+      position: absolute;
+      color: #f857a6;
+      font-size: 2.1rem;
+      font-weight: bold;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0.85;
+      z-index: 50;
+      animation: textfly 2.6s linear forwards;
+      text-shadow: 1px 2px 6px #fff8, 0 4px 12px #fa8;
+    }
+    @keyframes textfly {
+      from { opacity: 0.7; transform: translateY(0);}
+      to   { opacity: 0; transform: translateY(-140px) scale(1.25);}
+    }
+    /* Nếu bị chặn nhạc, hiện thông báo */
+    .notice-audio {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fffa;
+      color: #d72660;
+      font-size: 1rem;
+      border-radius: 12px;
+      padding: 9px 24px 9px 18px;
+      box-shadow: 0 2px 12px #fa849933;
+      z-index: 9999;
+      display: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .notice-audio.show { display: block; }
+  </style>
+</head>
+<body>
+  <!-- NHẠC NỀN MP3 -->
+  <audio id="bgmusic" src="https://raw.githubusercontent.com/bietdoitinhnhue/server-manager/main/I%20Do%20-%20911.mp3" preload="auto" loop></audio>
+
+  <div class="cloud"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+  <canvas id="bubble-canvas"></canvas>
+  <canvas id="confetti-canvas" style="display:none;"></canvas>
+  <div class="road"></div>
+  <div class="car" id="car">
+    <div class="crew">
+      <span class="boy" title="Chàng trai bối rối">👦🏻<span style="font-size:1.3em;vertical-align:-.5em;">😳</span></span>
+      <span style="font-size:1.3em;">💖</span>
+      <span style="font-size:1.2em;">👧🏻</span>
+    </div>
+    <div>
+      🚗
+    </div>
+    <div class="love">💕</div>
+  </div>
+  <div id="popup" class="popup">
+    <h2>Em có đồng ý làm người yêu anh không bây bi? 🥰</h2>
+    <div class="buttons">
+      <button class="btn yes" onclick="agreeLove()">Đồng ý ❤️</button>
+      <button class="btn no" onclick="alert('Dù sao anh cũng vẫn quý em 🥲')">Từ chối</button>
+    </div>
+  </div>
+  <!-- Thông báo nếu nhạc bị chặn -->
+  <div id="audioNotice" class="notice-audio" onclick="playMusic()">
+    🔈 Nhấn vào đây để nghe nhạc nền nếu bạn chưa nghe thấy nhé!
+  </div>
+<script>
+// Bubbles
+const canvas = document.getElementById('bubble-canvas');
+const ctx = canvas.getContext('2d');
+let W = window.innerWidth, H = window.innerHeight;
+canvas.width = W; canvas.height = H;
+
+function randomColor() {
+  const colors = [
+    "#FF7EB9", "#FF65A3", "#FF96A1", "#FFD6E0",
+    "#90F1EF", "#3EDBF0", "#36EEE0", "#5BFFA7", "#FFF200"
+  ];
+  return colors[Math.floor(Math.random()*colors.length)];
+}
+function randomInt(a, b) {
+  return Math.floor(Math.random() * (b - a + 1)) + a;
+}
+class Bubble {
+  constructor() {
+    this.r = randomInt(22, 44);
+    this.x = randomInt(this.r, W - this.r);
+    this.y = H + this.r + randomInt(0, 80);
+    this.speed = randomInt(1, 2) + Math.random()*1.2;
+    this.color = randomColor();
+    this.alpha = 0.85 + Math.random()*0.15;
+    this.dx = Math.random()*1.8 - 0.9;
+  }
+  draw(ctx) {
+    ctx.save();
+    ctx.globalAlpha = this.alpha;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+    ctx.fillStyle = this.color;
+    ctx.shadowColor = "#fff8";
+    ctx.shadowBlur = 14;
+    ctx.fill();
+    ctx.restore();
+  }
+  move() {
+    this.y -= this.speed;
+    this.x += this.dx;
+    this.alpha -= 0.001;
+  }
+}
+let bubbles = [];
+for(let i=0;i<23;i++) bubbles.push(new Bubble());
+
+function drawBubbles() {
+  ctx.clearRect(0,0,W,H);
+  for(let b of bubbles) b.draw(ctx);
+}
+function moveBubbles() {
+  for(let b of bubbles) b.move();
+}
+function loopBubbles() {
+  drawBubbles();
+  moveBubbles();
+  if (bubbles.every(b=>b.y < -b.r || b.alpha<0.1)) {
+    setTimeout(showConfetti, 300);
+    setTimeout(()=>{showPopup()}, 1700);
+    return;
+  }
+  requestAnimationFrame(loopBubbles);
+}
+loopBubbles();
+
+window.addEventListener('resize',()=>{
+  W = window.innerWidth; H = window.innerHeight;
+  canvas.width = W; canvas.height = H;
+});
+
+// Confetti
+function showConfetti() {
+  const c2 = document.getElementById('confetti-canvas');
+  const ctx2 = c2.getContext('2d');
+  c2.style.display = "block";
+  c2.width = window.innerWidth;
+  c2.height = window.innerHeight;
+  let pieces = [];
+  for(let i=0;i<170;i++) {
+    pieces.push({
+      x: randomInt(0, c2.width),
+      y: randomInt(-60, 0),
+      r: randomInt(6, 13),
+      color: randomColor(),
+      d: randomInt(2, 5),
+      vy: Math.random()*3 + 3,
+      vx: Math.random()*2 - 1,
+      a: Math.random() * Math.PI * 2
+    });
+  }
+  let ticks = 0;
+  function animate() {
+    ctx2.clearRect(0,0,c2.width,c2.height);
+    for(let p of pieces) {
+      ctx2.save();
+      ctx2.translate(p.x, p.y);
+      ctx2.rotate(p.a);
+      ctx2.fillStyle = p.color;
+      ctx2.globalAlpha = 0.85;
+      ctx2.beginPath();
+      ctx2.arc(0,0,p.r,0,2*Math.PI);
+      ctx2.fill();
+      ctx2.restore();
+      p.y += p.vy;
+      p.x += p.vx;
+      p.a += 0.07;
+      if(p.y > c2.height + 40) p.y = randomInt(-100,0), p.x = randomInt(0, c2.width);
+    }
+    ticks++;
+    if(ticks < 48) requestAnimationFrame(animate);
+    else c2.style.display = "none";
+  }
+  animate();
+}
+
+// PHÁT NHẠC nền khi trang vừa load hoặc khi user click (fallback)
+function playMusic() {
+  var audio = document.getElementById('bgmusic');
+  audio.volume = 0.75;
+  // Đã phát nhạc thì không phát lại nữa
+  if (!audio.paused) return;
+  audio.play().then(()=>{
+    // Hide notice nếu phát thành công
+    document.getElementById('audioNotice').classList.remove('show');
+  }).catch(()=>{
+    // Nếu bị chặn vẫn giữ notice
+  });
+}
+
+// Auto play on load (nếu browser cho phép)
+window.addEventListener('DOMContentLoaded', function() {
+  playMusic();
+  // Nếu bị chặn, show thông báo nhỏ cho user bấm để phát nhạc
+  setTimeout(function(){
+    var audio = document.getElementById('bgmusic');
+    if (audio.paused) {
+      document.getElementById('audioNotice').classList.add('show');
+    }
+  }, 800);
+});
+
+// Nếu user click/tap bất kỳ đâu thì thử play lại nhạc (nếu trước đó bị chặn)
+document.body.addEventListener('click', playMusic, { once: true });
+
+// Show popup tỏ tình
+function showPopup() {
+  document.getElementById('popup').classList.add('active');
+  // playMusic(); // Không cần phát nhạc lại ở đây nữa
+}
+
+// Nếu nhấn "Đồng ý"
+function agreeLove() {
+  showConfetti();
+  setTimeout(()=>{
+    window.open('https://m.me/drakenguyen.me', "_blank");
+  }, 1800);
+}
+
+// Hiệu ứng text bay (trái tim, câu tỏ tình nhỏ)
+const textList = [
+  'Anh thích em!', 'Love you', 'Be my baby!', '💖', '😍', 'Yêu quá trời', '💞', 'Cute quá!', 'Baby ơi!', '💘', 'Làm người yêu anh nha!'
+];
+function randomFlyText() {
+  const el = document.createElement('div');
+  el.className = 'flytext';
+  el.innerText = textList[randomInt(0, textList.length-1)];
+  el.style.left = (randomInt(12, W-180)) + 'px';
+  el.style.top = (randomInt(H*0.3, H*0.88)) + 'px';
+  el.style.color = randomColor();
+  document.body.appendChild(el);
+  setTimeout(()=>{el.remove()}, 2600);
+}
+setInterval(randomFlyText, 650);
+</script>
+</body>
+</html>
