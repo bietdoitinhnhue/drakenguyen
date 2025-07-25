@@ -91,42 +91,104 @@
       from { transform: translateY(0);}
       to   { transform: translateY(-24px) scale(1.14);}
     }
+    /* Popup TỎ TÌNH CỰC ĐỈNH */
     .popup {
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 330px;
-      transform: translate(-50%, -50%);
+      width: 470px;
+      max-width: 94vw;
+      transform: translate(-50%, -50%) scale(0.78);
       background: #fffafc;
-      border-radius: 20px;
-      box-shadow: 0 10px 60px #3334;
+      border-radius: 36px;
+      box-shadow: 0 16px 72px 0 #b065b677, 0 1.5px 16px 6px #f857a633;
       text-align: center;
-      padding: 36px 20px 28px 20px;
-      font-size: 1.2rem;
+      padding: 64px 28px 48px 28px;
+      font-size: 1.6rem;
       z-index: 200;
       opacity: 0;
       pointer-events: none;
-      transition: opacity .7s;
+      transition: opacity .5s cubic-bezier(.8,0,.2,1), transform .5s cubic-bezier(.8,0,.2,1);
+      animation: pop-fade-in .7s cubic-bezier(.86,0,.11,1) forwards;
     }
     .popup.active {
       opacity: 1;
       pointer-events: all;
+      transform: translate(-50%, -50%) scale(1.01);
+      box-shadow: 0 30px 96px 0 #b065b6aa, 0 6px 36px 6px #ffb6c099;
     }
-    .popup h2 { color: #d72660; margin-bottom: 22px;}
-    .popup .buttons { margin-top: 22px;}
-    .btn {
-      padding: 12px 28px;
-      font-size: 1rem;
-      border-radius: 20px;
+    @keyframes pop-fade-in {
+      from { opacity:0; transform:translate(-50%,-60%) scale(0.7);}
+      to   { opacity:1; transform:translate(-50%,-50%) scale(1.01);}
+    }
+    .popup h2 {
+      color: #f857a6;
+      margin-bottom: 36px;
+      font-weight: bold;
+      line-height: 1.3;
+      text-shadow: 0 2px 16px #ffe6f0c0;
+      letter-spacing: 0.5px;
+      font-size: 2.1rem;
+    }
+    .popup h2 .babe {
+      color: #ffb6c0;
+      font-size: 1.16em;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+    .btn.yes, .btn.big-yes {
+      padding: 22px 54px;
+      font-size: 1.5rem;
+      border-radius: 30px;
+      background: linear-gradient(100deg, #f857a6 60%, #ffb6c0 100%);
+      color: #fff;
+      box-shadow: 0 3px 16px #f857a6cc;
+      transition: transform .18s cubic-bezier(.8,0,.2,1), box-shadow .22s;
+      font-weight: bold;
+      animation: yes-glow 2s infinite alternate, btn-jelly 1.5s infinite alternate;
       border: none;
-      margin: 0 12px;
       cursor: pointer;
-      transition: background .2s;
+      margin-top: 16px;
     }
-    .yes { background: #f857a6; color: #fff;}
-    .yes:hover { background: #ff5858;}
-    .no { background: #eee; color: #d72660;}
-    .no:hover { background: #f8b195;}
+    @keyframes yes-glow {
+      from { box-shadow:0 2px 20px #ffb6c055;}
+      to   { box-shadow:0 8px 36px #f857a6cc,0 1.5px 10px #ffb6c099;}
+    }
+    @keyframes btn-jelly {
+      0% { transform: scale(1);}
+      50% { transform: scale(1.05) rotate(-1.4deg);}
+      100% { transform: scale(1);}
+    }
+    /* Trái tim quanh popup */
+    .popup-hearts {
+      position: absolute;
+      left: 50%;
+      top: 4px;
+      pointer-events: none;
+      width: 98%;
+      height: 32px;
+      z-index: 1;
+    }
+    .popup-hearts::before, .popup-hearts::after {
+      content:'💖💗💞💕💘';
+      display: block;
+      font-size: 1.5em;
+      opacity: .7;
+      animation: flyheart 1.6s infinite alternate;
+      transform: translate(-45%,0);
+    }
+    .popup-hearts::after {
+      content:'💓💖💝';
+      font-size: 1.3em;
+      opacity: .55;
+      margin-top: 20px;
+      margin-left: 180px;
+      animation-delay: .7s;
+    }
+    @keyframes flyheart {
+      from { transform:translate(-45%,0) scale(1);}
+      to { transform:translate(-55%,8px) scale(1.08) rotate(-4deg);}
+    }
     canvas { position:fixed; left:0;top:0;pointer-events:none;z-index:120; }
     .flytext {
       position: absolute;
@@ -185,12 +247,13 @@
     </div>
     <div class="love">💕</div>
   </div>
+  <!-- Popup TỎ TÌNH SIÊU ĐẸP -->
   <div id="popup" class="popup">
-    <h2>Em có đồng ý làm người yêu anh không bây bi? 🥰</h2>
-    <div class="buttons">
-      <button class="btn yes" onclick="agreeLove()">Đồng ý ❤️</button>
-      <button class="btn no" onclick="alert('Dù sao anh cũng vẫn quý em 🥲')">Từ chối</button>
-    </div>
+    <div class="popup-hearts"></div>
+    <h2>
+      Em có đồng ý làm người yêu anh không<br><span class="babe">bây bi?</span> 🥰
+    </h2>
+    <button class="btn yes big-yes" onclick="agreeLove()">Đồng ý ❤️</button>
   </div>
   <!-- Thông báo nếu nhạc bị chặn -->
   <div id="audioNotice" class="notice-audio" onclick="playMusic()">
@@ -253,14 +316,16 @@ function moveBubbles() {
 function loopBubbles() {
   drawBubbles();
   moveBubbles();
+  // ĐÃ BỎ gọi showPopup ở đây, chỉ còn confetti thôi!
   if (bubbles.every(b=>b.y < -b.r || b.alpha<0.1)) {
     setTimeout(showConfetti, 300);
-    setTimeout(()=>{showPopup()}, 1700);
+    // setTimeout(()=>{showPopup()}, 1700);  // Đã bỏ dòng này!
     return;
   }
   requestAnimationFrame(loopBubbles);
 }
 loopBubbles();
+setTimeout(showPopup, 10000); // <--- Thêm dòng này, popup xuất hiện sau 10s
 
 window.addEventListener('resize',()=>{
   W = window.innerWidth; H = window.innerHeight;
@@ -316,20 +381,15 @@ function showConfetti() {
 function playMusic() {
   var audio = document.getElementById('bgmusic');
   audio.volume = 0.75;
-  // Đã phát nhạc thì không phát lại nữa
   if (!audio.paused) return;
   audio.play().then(()=>{
-    // Hide notice nếu phát thành công
     document.getElementById('audioNotice').classList.remove('show');
   }).catch(()=>{
     // Nếu bị chặn vẫn giữ notice
   });
 }
-
-// Auto play on load (nếu browser cho phép)
 window.addEventListener('DOMContentLoaded', function() {
   playMusic();
-  // Nếu bị chặn, show thông báo nhỏ cho user bấm để phát nhạc
   setTimeout(function(){
     var audio = document.getElementById('bgmusic');
     if (audio.paused) {
@@ -337,22 +397,20 @@ window.addEventListener('DOMContentLoaded', function() {
     }
   }, 800);
 });
-
-// Nếu user click/tap bất kỳ đâu thì thử play lại nhạc (nếu trước đó bị chặn)
 document.body.addEventListener('click', playMusic, { once: true });
 
 // Show popup tỏ tình
 function showPopup() {
   document.getElementById('popup').classList.add('active');
-  // playMusic(); // Không cần phát nhạc lại ở đây nữa
 }
 
 // Nếu nhấn "Đồng ý"
 function agreeLove() {
   showConfetti();
+  document.querySelector('.big-yes').innerText = "Yêu anh nhiều luôn 😘";
   setTimeout(()=>{
     window.open('https://m.me/drakenguyen.me', "_blank");
-  }, 1800);
+  }, 2200);
 }
 
 // Hiệu ứng text bay (trái tim, câu tỏ tình nhỏ)
