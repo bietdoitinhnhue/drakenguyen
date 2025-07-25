@@ -251,7 +251,7 @@
   <div id="popup" class="popup">
     <div class="popup-hearts"></div>
     <h2>
-      Em có đồng ý làm người yêu anh không<br><span class="babe">bây bi?</span> 🥰
+      Làm người yêu anh nhé<br><span class="babe">bấy bi?</span> 🥰
     </h2>
     <button class="btn yes big-yes" onclick="agreeLove()">Đồng ý ❤️</button>
   </div>
@@ -319,7 +319,7 @@ function loopBubbles() {
   // ĐÃ BỎ gọi showPopup ở đây, chỉ còn confetti thôi!
   if (bubbles.every(b=>b.y < -b.r || b.alpha<0.1)) {
     setTimeout(showConfetti, 300);
-    // setTimeout(()=>{showPopup()}, 1700);  // Đã bỏ dòng này!
+    // setTimeout(()=>{showPopup()}, 10000);  // Đã bỏ dòng này!
     return;
   }
   requestAnimationFrame(loopBubbles);
