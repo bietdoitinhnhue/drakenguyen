@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Tỏ Tình: Xe chở Crush & Bầu trời bong bóng</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       min-height: 100vh;
-      overflow-x: hidden;
+      width: 100%;
+      background: linear-gradient(to top, #b7eaff 60%, #fffbe6 100%);
       font-family: 'Segoe UI', Arial, sans-serif;
       user-select: none;
-      background: linear-gradient(to top, #b7eaff 60%, #fffbe6 100%);
+      overflow-x: hidden;
     }
     .cloud {
       position: absolute;
@@ -33,12 +34,12 @@
       position: fixed;
       left: 0;
       bottom: 0;
-      width: 100%;
-      min-width: 100vw;
+      width: 100vw;
       height: 60px;
       background: #484848;
       box-shadow: 0 6px 24px #2224;
       z-index: 10;
+      min-width: 100vw;
     }
     .road::before {
       content: '';
@@ -51,6 +52,7 @@
         to right, #fff 0 50px, transparent 50px 90px
       );
       opacity: 0.6;
+      z-index: 11;
     }
     .car {
       position: absolute;
@@ -229,43 +231,25 @@
     .notice-audio.show { display: block; }
     /* ========== MOBILE ========== */
     @media (max-width: 600px) {
-      html, body {
-        font-size: 16px;
-      }
+      html, body { font-size: 16px; }
       .popup {
-        width: 94vw;
-        padding: 32px 10px 32px 10px;
-        font-size: 1.1rem;
+        width: 98vw;
+        min-width: unset;
+        max-width: 99vw;
+        padding: 34px 4vw 26px 4vw;
+        font-size: 1.07rem;
+        border-radius: 18px;
       }
-      .popup h2 {
-        font-size: 1.3rem;
-        padding: 0 4px;
-        line-height: 1.3;
-      }
-      .btn.yes, .btn.big-yes {
-        font-size: 1.05rem;
-        padding: 14px 22px;
-      }
-      .popup-hearts {
-        font-size: 0.82em;
-        width: 98%;
-        left: 49%;
-      }
-      .car {
-        font-size: 54px;
-        bottom: 75px;
-      }
-      .road {
-        height: 42px;
-        min-width: 100vw;
-      }
+      .popup h2 { font-size: 1.1rem; padding: 0 2px; margin-bottom: 22px;}
+      .btn.yes, .btn.big-yes { font-size: 1.03rem; padding: 12px 24px; border-radius: 19px; }
+      .popup-hearts { font-size: 0.82em; width: 100%; left: 48.5%;}
+      .car { font-size: 46px; bottom: 46px; }
+      .road { height: 32px; min-width: 100vw;}
     }
   </style>
 </head>
 <body>
-  <!-- NHẠC NỀN MP3 -->
   <audio id="bgmusic" src="https://raw.githubusercontent.com/bietdoitinhnhue/server-manager/main/I%20Do%20-%20911.mp3" preload="auto" loop></audio>
-
   <div class="cloud"></div>
   <div class="cloud cloud2"></div>
   <div class="cloud cloud3"></div>
@@ -278,20 +262,16 @@
       <span style="font-size:1.3em;">💖</span>
       <span style="font-size:1.2em;">👧🏻</span>
     </div>
-    <div>
-      🚗
-    </div>
+    <div>🚗</div>
     <div class="love">💕</div>
   </div>
-  <!-- Popup TỎ TÌNH SIÊU ĐẸP -->
   <div id="popup" class="popup">
     <div class="popup-hearts"></div>
     <h2>
-      Em có đồng ý làm người yêu anh không<br><span class="babe">bây bi?</span> 🥰
+      Làm người yêu anh nhá<br><span class="babe">bây bi?</span> 🥰
     </h2>
     <button class="btn yes big-yes" onclick="agreeLove()">Đồng ý ❤️</button>
   </div>
-  <!-- Thông báo nếu nhạc bị chặn -->
   <div id="audioNotice" class="notice-audio" onclick="playMusic()">
     🔈 Nhấn vào đây để nghe nhạc nền nếu bạn chưa nghe thấy nhé!
   </div>
@@ -353,12 +333,12 @@ function loopBubbles() {
   moveBubbles();
   if (bubbles.every(b=>b.y < -b.r || b.alpha<0.1)) {
     setTimeout(showConfetti, 300);
-    setTimeout(()=>{showPopup()}, 1700);
     return;
   }
   requestAnimationFrame(loopBubbles);
 }
 loopBubbles();
+setTimeout(showPopup, 10000);
 
 window.addEventListener('resize',()=>{
   W = window.innerWidth; H = window.innerHeight;
@@ -409,16 +389,13 @@ function showConfetti() {
   animate();
 }
 
-// PHÁT NHẠC nền khi trang vừa load hoặc khi user click (fallback)
 function playMusic() {
   var audio = document.getElementById('bgmusic');
   audio.volume = 0.75;
   if (!audio.paused) return;
   audio.play().then(()=>{
     document.getElementById('audioNotice').classList.remove('show');
-  }).catch(()=>{
-    // Nếu bị chặn vẫn giữ notice
-  });
+  }).catch(()=>{});
 }
 window.addEventListener('DOMContentLoaded', function() {
   playMusic();
@@ -431,12 +408,9 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 document.body.addEventListener('click', playMusic, { once: true });
 
-// Show popup tỏ tình
 function showPopup() {
   document.getElementById('popup').classList.add('active');
 }
-
-// Nếu nhấn "Đồng ý"
 function agreeLove() {
   showConfetti();
   document.querySelector('.big-yes').innerText = "Yêu anh nhiều luôn 😘";
@@ -444,12 +418,20 @@ function agreeLove() {
     window.open('https://m.me/drakenguyen.me', "_blank");
   }, 2200);
 }
-
-// Hiệu ứng text bay (trái tim, câu tỏ tình nhỏ)
 const textList = [
-  'Anh thích em!', 'Love you', 'Be my baby!', '💖', '😍', 'Yêu quá trời', '💞', 'Cute quá!', 'Baby ơi!', '💘', 'Làm người yêu anh nha!'
+  'Yêu bé lắm bây bi!', 'Love you', 'Be my baby!', '💖', '😍', 'Yêu quá trời', '💞', 'Cute quá!', 'Baby ơi!', '💘', 'Làm người yêu anh nhá!'
 ];
 function randomFlyText() {
   const el = document.createElement('div');
   el.className = 'flytext';
-  el.innerText = textList[randomInt(0,
+  el.innerText = textList[randomInt(0, textList.length-1)];
+  el.style.left = (randomInt(12, W-180)) + 'px';
+  el.style.top = (randomInt(H*0.3, H*0.88)) + 'px';
+  el.style.color = randomColor();
+  document.body.appendChild(el);
+  setTimeout(()=>{el.remove()}, 2600);
+}
+setInterval(randomFlyText, 650);
+</script>
+</body>
+</html>
