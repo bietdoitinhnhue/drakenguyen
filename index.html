@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Nest - Your Path to Natural Vitality</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover the best natural supplements from Wellness Nest. Curated collections for daily rituals and women's health. Click through for exclusive offers!">
+    <meta name="keywords" content="Wellness Nest, Shilajit, Probiotics, Natural Supplements, Health, Vitality, Women's Health, Affiliate, clssport">
+    <meta name="author" content="Clssport.com">
+
+    <!-- Social Media Meta Tags (Open Graph) -->
+    <meta property="og:title" content="Wellness Nest - Your Path to Natural Vitality">
+    <meta property="og:description" content="Handpicked selections of top-tier natural supplements. Find your perfect match and enjoy exclusive vouchers when you shop through our links.">
+    <meta property="og:image" content="https://wellnessnest.co/cdn/shop/files/gempages_501444340413891578-19ba941a-9181-49ae-9a0d-fc0c4772ee5b.png?v=1727250440">
+    <meta property="og:url" content="https://wellnessnest.co/?toolbar=oieaajxh">
+    <meta property="og:type" content="website">
+
+  <meta property="og:site_name" content="Wellness Nest - Your Path to Natural Vitality" />
+  <meta property="fb:app_id" content="3884767275114632" />
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Wellness Nest - Your Path to Natural Vitality">
+    <meta name="twitter:description" content="Handpicked selections of top-tier natural supplements. Find your perfect match and enjoy exclusive vouchers when you shop through our links.">
+    <meta name="twitter:image" content="https://wellnessnest.co/cdn/shop/files/gempages_501444340413891578-19ba941a-9181-49ae-9a0d-fc0c4772ee5b.png?v=1727250440">
+	
+	  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/bietdoitinhnhue/tramtaichinh/refs/heads/main/VNR.PNG">
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles to match the brand -->
+    <style>
+        body {
+            background-color: #FAF9F7; /* Brand's light beige background */
+            color: #2D2D2D; /* Brand's dark text color */
+            font-family: 'Inter', sans-serif;
+        }
+        .brand-green-bg {
+            background-color: #1A4738; /* Brand's primary green */
+        }
+        .brand-green-text {
+            color: #1A4738;
+        }
+        .product-title-color {
+            color: #198c16;
+        }
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        /* Style for FAQ accordion */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .arrow-down {
+            transform: rotate(180deg);
+        }
+        
+        /* Banner Animation */
+        .banner-overlay-content {
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .banner-image {
+            transition: transform 0.5s ease;
+        }
+
+        .banner-container:hover .banner-image {
+            transform: scale(1.05);
+        }
+
+        /* Pulse animation for buttons */
+        .animate-pulse-custom {
+            animation: pulse-custom 2s infinite;
+        }
+
+        @keyframes pulse-custom {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(83, 175, 1, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(83, 175, 1, 0);
+            }
+        }
+        
+        /* Collection Title Animation */
+        .collection-title {
+            color: #53af01;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .collection-title:hover {
+            color: #198c16;
+            transform: scale(1.05);
+        }
+
+        /* New Ritual Button Style */
+        .ritual-button {
+            background-color: #22C55E; /* Bright green */
+            transition: background-color 0.3s ease;
+        }
+        .ritual-button:hover {
+            background-color: #16a34a; /* Darker green on hover */
+        }
+    </style>
+
+    <!-- Schema for AI Overview (SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "What are these products?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "These are high-quality, natural wellness supplements from Wellness Nest, designed to support various health goals, from daily vitality with Shilajit to specific needs like women's health probiotics."
+        }
+      },{
+        "@type": "Question",
+        "name": "Why should I choose them?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wellness Nest products are chosen for their pure, potent, and natural ingredients. Each formula is crafted for maximum effectiveness to help you achieve your wellness goals."
+        }
+      },{
+        "@type": "Question",
+        "name": "Who are these products for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They are for anyone looking to enhance their health and vitality naturally. We have curated collections for general wellness, daily rituals, and specific needs for women."
+        }
+      },{
+        "@type": "Question",
+        "name": "When will I see results?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Results can vary based on the individual and the product. Consistency is key. Most users report feeling a positive difference within a few weeks of regular use."
+        }
+      },{
+        "@type": "Question",
+        "name": "Where are the products from?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wellness Nest sources high-quality ingredients from pristine locations around the world and manufactures its products in certified facilities to ensure purity and safety."
+        }
+      },{
+        "@type": "Question",
+        "name": "How do I get the best deal or voucher?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "By clicking any of the product links or call-to-action buttons on this page! You will be redirected to the official store with our exclusive affiliate offers automatically applied where available."
+        }
+      }]
+    }
+    </script>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Banner Section -->
+        <div class="mb-12">
+            <div class="relative rounded-xl overflow-hidden shadow-lg banner-container">
+                <a href="https://wellnessnest.co/collections?ref=oieaajxh" target="_blank" rel="noopener noreferrer" class="block">
+                    <!-- Desktop Banner -->
+                    <img src="https://wellnessnest.co/cdn/shop/files/gempages_501444340413891578-19ba941a-9181-49ae-9a0d-fc0c4772ee5b.png?v=1727250440" 
+                         alt="Wellness Nest Collection Banner - Desktop" 
+                         class="w-full h-auto object-cover banner-image hidden md:block"
+                         onerror="this.onerror=null;this.src='https://placehold.co/1200x400/8A9A8C/FFFFFF?text=Image+Not+Found';">
+                    <!-- Mobile Banner -->
+                    <img src="https://wellnessnest.co/cdn/shop/files/2200d42c-6ba7-4d5f-a5d7-7c14a8440dcb.jpg?v=1742477073&width=550" 
+                         alt="Wellness Nest Collection Banner - Mobile" 
+                         class="w-full h-auto object-cover banner-image block md:hidden"
+                         onerror="this.onerror=null;this.src='https://placehold.co/550x600/8A9A8C/FFFFFF?text=Image+Not+Found';">
+                </a>
+                <!-- Overlay content -->
+                <div class="absolute inset-0 flex items-center justify-center md:justify-start md:pl-16 lg:pl-24 bg-black bg-opacity-20 p-4">
+                    <div class="text-center md:text-left banner-overlay-content">
+                        <h1 class="text-white text-3xl md:text-4xl lg:text-5xl font-bold leading-tight drop-shadow-lg">
+                            Elevate Your<br>Daily Ritual
+                        </h1>
+                        <p class="text-white mt-4 max-w-md drop-shadow-md">
+                            Discover nature's finest supplements to unlock your true potential.
+                        </p>
+                        <a href="https://wellnessnest.co/collections?ref=oieaajxh" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block bg-white brand-green-text font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors animate-pulse-custom">
+                            START MY RITUAL
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main CTA Button -->
+        <div class="text-center mb-12">
+            <a href="https://wellnessnest.co/collections?ref=oieaajxh" target="_blank" rel="noopener noreferrer" class="inline-block text-white font-bold text-lg py-4 px-10 rounded-full shadow-lg hover:opacity-90 transition-opacity animate-pulse-custom" style="background-color: #53af01;">
+                THE BEST CHOICE FOR YOU
+            </a>
+        </div>
+
+        <!-- Collection 1: Shilajit Daily Rituals -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 uppercase collection-title">Shilajit Daily Rituals</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Product 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card flex flex-col">
+                    <a href="https://wellnessnest.co/products/pure-shilajit-essence?ref=oieaajxh" target="_blank" rel="noopener noreferrer">
+                        <img src="https://wellnessnest.co/cdn/shop/files/why_choose_931ab09e-d691-4a43-a5d3-a66773b26f64_1024x1024.png?v=1747889845" alt="Pure Shilajit Essence Supplement" class="w-full h-auto object-cover">
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl mb-2 product-title-color">Shilajit: A Natural Supplement from the Himalayas</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            <strong class="brand-green-text">WHY YOU SHOULD CHOOSE IT NOW:</strong><br>
+                            Boost your energy and vitality naturally. This pure resin is your daily source of 84+ essential minerals for peak physical and mental performance.
+                        </p>
+                        <a href="https://wellnessnest.co/products/pure-shilajit-essence?ref=oieaajxh" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block w-full text-center text-white font-bold py-3 px-6 rounded-full uppercase ritual-button">
+                            START MY RITUAL
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card flex flex-col">
+                    <a href="https://wellnessnest.co/products/psg-nonus?ref=oieaajxh" target="_blank" rel="noopener noreferrer">
+                        <img src="https://wellnessnest.co/cdn/shop/files/Gummies_-_Product_Image.png?v=1754400948&width=713" alt="Peak Shilajit Gold with Noni Supplement" class="w-full h-auto object-cover">
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl mb-2 product-title-color">Premium Himalayan Shilajit Gummies</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            <strong class="brand-green-text">WHY YOU SHOULD CHOOSE IT NOW:</strong><br>
+                            Experience enhanced immune support and detoxification. The powerful combination of Shilajit and Noni fruit creates a potent antioxidant formula.
+                        </p>
+                        <a href="https://wellnessnest.co/products/psg-nonus?ref=oieaajxh" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block w-full text-center text-white font-bold py-3 px-6 rounded-full uppercase ritual-button">
+                            START MY RITUAL
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card flex flex-col">
+                    <a href="https://wellnessnest.co/products/psgs-h?ref=oieaajxh" target="_blank" rel="noopener noreferrer">
+                        <img src="https://wellnessnest.co/cdn/shop/files/Landing_page_Shilajit_Gold_Website_May_2024_Banner_1_778e4589-6f12-458a-83a6-c3a98e78375c_1440x1440.jpg?v=1743416642" alt="Peak Shilajit Gold with Saffron & Haritaki" class="w-full h-auto object-cover">
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl mb-2 product-title-color">The Rarest Shilajit on Earth - 24K Gold-Infused Himalayan Shilajit</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            <strong class="brand-green-text">WHY YOU SHOULD CHOOSE IT NOW:</strong><br>
+                            Elevate your mood and cognitive function. Saffron is renowned for its mood-enhancing properties, perfectly complementing Shilajit's brain-boosting benefits.
+                        </p>
+                        <a href="https://wellnessnest.co/products/psgs-h?ref=oieaajxh" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block w-full text-center text-white font-bold py-3 px-6 rounded-full uppercase ritual-button">
+                            START MY RITUAL
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card flex flex-col">
+                    <a href="https://wellnessnest.co/products/sd?ref=oieaajxh" target="_blank" rel="noopener noreferrer">
+                        <img src="https://wellnessnest.co/cdn/shop/files/Landing_page_Shilajit_Shockwave_Website_4_5ef4a31b-19f6-4128-9d5e-bcf0a0436723.jpg?v=1743416644" alt="Shilajit Drops Supplement" class="w-full h-auto object-cover">
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl mb-2 product-title-color">Shilajit Shockwave - Supercharge Your Day with Natural Energy and Sharp Mental Clarity</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            <strong class="brand-green-text">WHY YOU SHOULD CHOOSE IT NOW:</strong><br>
+                            The most convenient way to get your daily Shilajit. Perfect for a busy lifestyle, just add a few drops to your favorite drink for an instant energy lift.
+                        </p>
+                        <a href="https://wellnessnest.co/products/sd?ref=oieaajxh" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block w-full text-center text-white font-bold py-3 px-6 rounded-full uppercase ritual-button">
+                            START MY RITUAL
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card flex flex-col">
+                    <a href="https://wellnessnest.co/products/psak?ref=oieaajxh" target="_blank" rel="noopener noreferrer">
+                        <img src="https://wellnessnest.co/cdn/shop/files/Landing_page_Shilajit_Apha_King_1_126ba31a-63be-4787-a789-95a88e7364f7_1440x1440.jpg?v=1743416645" alt="Peak Shilajit Gold with Ashwagandha & Gokshura" class="w-full h-auto object-cover">
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl mb-2 product-title-color">Premium Shilajit Alpha King: Unleash Your Inner Alpha</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            <strong class="brand-green-text">WHY YOU SHOULD CHOOSE IT NOW:</strong><br>
+                            Combat stress and enhance physical strength. Ashwagandha is a powerful adaptogen that helps your body manage stress while boosting athletic performance.
+                        </p>
+                        <a href="https://wellnessnest.co/products/psak?ref=oieaajxh" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block w-full text-center text-white font-bold py-3 px-6 rounded-full uppercase ritual-button">
+                            START MY RITUAL
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card flex flex-col">
+                    <a href="https://wellnessnest.co/products/turkesterone-advanced-formula" target="_blank" rel="noopener noreferrer">
+                        <img src="https://wellnessnest.co/cdn/shop/files/1_8eb72f34-a10a-4e87-b655-f0316b8a459f.png?v=1743416642" alt="Turkesterone Advanced Formula Supplement" class="w-full h-auto object-cover">
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl mb-2 product-title-color">Premium Turkesterone Advanced Formula</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            <strong class="brand-green-text">WHY YOU SHOULD CHOOSE IT NOW:</strong><br>
+                            Naturally optimize muscle growth and recovery. Turkesterone is a cutting-edge compound for those serious about building lean muscle and strength.
+                        </p>
+                        <a href="https://wellnessnest.co/products/turkesterone-advanced-formula" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block w-full text-center text-white font-bold py-3 px-6 rounded-full uppercase ritual-button">
+                            START MY RITUAL
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Collection 2: The best choice for Women -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 uppercase collection-title">The Best Choice for Women</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Product 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card flex flex-col">
+                    <a href="https://wellnessnest.co/products/menomate-menopause-probiotic?ref=oieaajxh" target="_blank" rel="noopener noreferrer">
+                        <img src="https://wellnessnest.co/cdn/shop/files/1_0559498b-2a8d-42dc-a572-eaf480db60b4.jpg?v=1743416652&width=990" alt="MenoMate Menopause Probiotic Supplement" class="w-full h-auto object-cover">
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl mb-2 product-title-color">MenoMate - Complete Natural Menopause Probiotic</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            <strong class="brand-green-text">WHY YOU SHOULD CHOOSE IT NOW:</strong><br>
+                            Find balance and comfort during menopause. This targeted probiotic formula helps manage common symptoms like hot flashes, mood swings, and supports gut health.
+                        </p>
+                        <a href="https://wellnessnest.co/products/menomate-menopause-probiotic?ref=oieaajxh" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block w-full text-center text-white font-bold py-3 px-6 rounded-full uppercase ritual-button">
+                            START MY RITUAL
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card flex flex-col">
+                    <a href="https://wellnessnest.co/products/florafresh?ref=oieaajxh" target="_blank" rel="noopener noreferrer">
+                        <img src="https://wellnessnest.co/cdn/shop/files/24_195514ee-29fe-4897-8bcd-9987d3c43f78.jpg?v=1752140295&width=990" alt="FloraFresh Probiotic Supplement" class="w-full h-auto object-cover">
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl mb-2 product-title-color">FloraFresh: Vaginal Prebiotic + Probiotic</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            <strong class="brand-green-text">WHY YOU SHOULD CHOOSE IT NOW:</strong><br>
+                            Support your feminine health and gut balance. FloraFresh is specifically designed to promote a healthy vaginal microbiome and prevent common issues.
+                        </p>
+                        <a href="https://wellnessnest.co/products/florafresh?ref=oieaajxh" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block w-full text-center text-white font-bold py-3 px-6 rounded-full uppercase ritual-button">
+                            START MY RITUAL
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 uppercase collection-title">Frequently Asked Questions</h2>
+            <div class="space-y-4 max-w-2xl mx-auto">
+                <details class="bg-white p-4 rounded-lg shadow-sm">
+                    <summary class="font-bold cursor-pointer flex justify-between items-center">
+                        <span>What are these products?</span>
+                        <span class="arrow-down transition-transform">▼</span>
+                    </summary>
+                    <p class="mt-2 text-gray-600">These are high-quality, natural wellness supplements from Wellness Nest, designed to support various health goals, from daily vitality with Shilajit to specific needs like women's health probiotics.</p>
+                </details>
+                <details class="bg-white p-4 rounded-lg shadow-sm">
+                    <summary class="font-bold cursor-pointer flex justify-between items-center">
+                        <span>Why should I choose them?</span>
+                        <span class="arrow-down transition-transform">▼</span>
+                    </summary>
+                    <p class="mt-2 text-gray-600">Wellness Nest products are chosen for their pure, potent, and natural ingredients. Each formula is crafted for maximum effectiveness to help you achieve your wellness goals.</p>
+                </details>
+                 <details class="bg-white p-4 rounded-lg shadow-sm">
+                    <summary class="font-bold cursor-pointer flex justify-between items-center">
+                        <span>Who are these products for?</span>
+                        <span class="arrow-down transition-transform">▼</span>
+                    </summary>
+                    <p class="mt-2 text-gray-600">They are for anyone looking to enhance their health and vitality naturally. We have curated collections for general wellness, daily rituals, and specific needs for women.</p>
+                </details>
+                 <details class="bg-white p-4 rounded-lg shadow-sm">
+                    <summary class="font-bold cursor-pointer flex justify-between items-center">
+                        <span>When will I see results?</span>
+                        <span class="arrow-down transition-transform">▼</span>
+                    </summary>
+                    <p class="mt-2 text-gray-600">Results can vary based on the individual and the product. Consistency is key. Most users report feeling a positive difference within a few weeks of regular use.</p>
+                </details>
+                 <details class="bg-white p-4 rounded-lg shadow-sm">
+                    <summary class="font-bold cursor-pointer flex justify-between items-center">
+                        <span>Where are the products from?</span>
+                        <span class="arrow-down transition-transform">▼</span>
+                    </summary>
+                    <p class="mt-2 text-gray-600">Wellness Nest sources high-quality ingredients from pristine locations around the world and manufactures its products in certified facilities to ensure purity and safety.</p>
+                </details>
+                 <details class="bg-white p-4 rounded-lg shadow-sm">
+                    <summary class="font-bold cursor-pointer flex justify-between items-center">
+                        <span>How do I get the best deal or voucher?</span>
+                        <span class="arrow-down transition-transform">▼</span>
+                    </summary>
+                    <p class="mt-2 text-gray-600">By clicking any of the product links or call-to-action buttons on this page! You will be redirected to the official store with our exclusive affiliate offers automatically applied where available.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <div class="text-center p-8 brand-green-bg rounded-xl shadow-lg">
+            <h3 class="text-2xl font-bold text-white mb-4">Ready to Start Your Wellness Journey?</h3>
+            <p class="text-gray-200 mb-6">Get an exclusive voucher and special offers when you purchase through healthcare.clssport.com.</p>
+            <a href="https://wellnessnest.co/collections?ref=oieaajxh" target="_blank" rel="noopener noreferrer" class="inline-block bg-white brand-green-text font-bold text-lg py-4 px-10 rounded-full shadow-lg hover:bg-gray-100 transition-colors animate-pulse-custom">
+                Claim Your Exclusive Voucher Now!
+            </a>
+        </div>
+        
+        <footer class="text-center mt-12 text-gray-600 text-sm space-y-2">
+            <p>
+                Some links on this page may lead to our partners. Purchasing through them may give you access to 
+                <strong class="brand-green-text">exclusive offers and special benefits.</strong>
+            </p>
+            <p class="text-gray-500">&copy; 2024 Clssport.com. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+	<script>
+// Chặn F12 và các phím DevTools phổ biến
+document.addEventListener('keydown', function(e) {
+    // F12
+    if (e.key === "F12" || e.keyCode === 123) {
+        e.preventDefault();
+        return false;
+    }
+    // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+    if ((e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) ||
+        (e.ctrlKey && (e.key === 'U' || e.key === 'u'))) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// Chặn chuột phải
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+});
+</script>
+
+</body>
+</html>
